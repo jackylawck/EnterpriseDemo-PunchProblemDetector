@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-HK" prefix="og: https://ogp.me/ns#">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no, viewport-fit=cover">
+  
+  <!-- 🔍 Google Search Console 擁有權驗證 (如不需可移除或替換) -->
+  <meta name="google-site-verification" content="JZ5UohX-CcP_fQV0_DI9VadkKY4ZoTTkUifL88-fIcY">
+
+  <!-- 🏢 基礎 SEO 核心標籤：Enterprise Demo 專案 -->
+  <title>Enterprise Demo Punch Problem Detector 企業打卡異常偵測工具 | Enterprise Demo</title>
+  <meta name="description" content="Enterprise Demo Punch Problem Detector (企業打卡異常偵測工具 / ED-PPD) 是 Enterprise Demo 自主研發之企業級無伺服器考勤完整性審計引擎。落實純前端零數據外洩架構，嚴格遵從香港私隱條例(Cap. 486)、GDPR、EU AI Act 及 ISO 27001/27701/42001 標準。">
+  <meta name="keywords" content="Enterprise Demo, ED-PPD, 打卡異常偵測工具, 考勤審計, 考勤完整性, 數位轉型, 智慧建造, 人力資源科技, HR Tech, SheetJS, 純前端運算, 數據隱私保護, ISO 27001, ISO 27701, ISO 42001, GDPR, EU AI Act, 企業管治">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://jackylawck.github.io/EnterpriseDemo-PunchProblemDetector/">
+
+  <!-- 👤 作者資訊 -->
+  <meta name="author" content="羅子淇 (Jacky Law)">
+  <meta property="article:author" content="羅子淇 (Jacky Law)">
+
+  <!-- 🌐 Open Graph / 社交卡片 -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jackylawck.github.io/EnterpriseDemo-PunchProblemDetector/">
+  <meta property="og:title" content="Enterprise Demo Punch Problem Detector 企業打卡異常偵測工具">
+  <meta property="og:description" content="零伺服器傳輸、極致數據安全。Enterprise Demo 自主構建之純前端考勤異常審計工作站，嚴格落實香港 Cap. 486、GDPR、EU AI Act 及 ISO/IEC 42001/27001 標準。">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ED-PPD 系統全景架構圖">
+  <meta property="og:locale" content="zh_HK">
+  <meta property="og:site_name" content="Enterprise Demo">
+
+  <!-- 🐦 Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ED-PPD: 企業打卡異常偵測工具 | Enterprise Demo">
+  <meta name="twitter:description" content="純前端離線解析之考勤打卡異常審計系統，保障企業人事數據私隱，落實高標準企業治理。">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop">
+
+  <!-- 📱 PWA 與行動端適配 -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ED-PPD">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#0b192c">
+  <meta name="application-name" content="ED-PPD 企業打卡異常偵測工具">
+
+  <!-- 🛡️ 修復後的 CSP -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
+    style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
+    img-src 'self' data: https://img.shields.io https://images.unsplash.com;
+    font-src 'self' data:;
+    connect-src 'self';
+    media-src 'none';
+    object-src 'none';
+    base-uri 'self';
+    form-action 'none';
+  ">
+  <meta http-equiv="Permissions-Policy" content="accelerometer=(), gyroscope=(), microphone=(), camera=(), geolocation=(), payment=()">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <!-- 🏷️ Schema.org 結構化資料 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Corporation",
+        "@id": "https://jackylawck.github.io/EnterpriseDemo-PunchProblemDetector/#organization",
+        "name": "Enterprise Demo",
+        "alternateName": "Enterprise Demo Limited",
+        "url": "https://jackylawck.github.io/EnterpriseDemo-PunchProblemDetector/",
+        "logo": "https://img.shields.io/badge/Enterprise-Demo-blue",
+        "description": "Enterprise Demo 專注於高標準工程營造與營建工程服務，致力於推動智慧建造技術、數位轉型與企業高標準誠信管治。",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Hong Kong",
+          "addressCountry": "HK"
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://github.com/jackylawck/#author",
+        "name": "羅子淇 (Jacky Law)",
+        "jobTitle": "Senior HR Manager & Corporate Governance Advisor",
+        "worksFor": {
+          "@id": "https://jackylawck.github.io/EnterpriseDemo-PunchProblemDetector/#organization"
+        },
+        "url": "https://github.com/jackylawck"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://jackylawck.github.io/EnterpriseDemo-PunchProblemDetector/#software",
+        "name": "Enterprise Demo Punch Problem Detector",
+        "alternateName": "企業打卡異常偵測工具 (ED-PPD)",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web Browser",
+        "author": {
+          "@id": "https://github.com/jackylawck/#author"
+        },
+        "publisher": {
+          "@id": "https://jackylawck.github.io/EnterpriseDemo-PunchProblemDetector/#organization"
+        },
+        "description": "企業級純前端考勤完整性與打卡異常自動化審計系統，貫徹香港 Cap. 486、GDPR、EU AI Act 及 ISO 27001/27701/42001 標準規範。"
+      }
+    ]
+  }
+  </script>
+
+  <!-- 引入標準樣式與依賴 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="i18n.js"></script>
+  <script src="app.js" defer></script>
+</head>
+<body class="bg-gray-100 text-gray-800 min-h-screen py-8 px-4 font-sans">
+  <div class="max-w-7xl mx-auto space-y-6">
+    
+    <!-- 頂部標題與語系切換 -->
+    <header class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <div class="flex flex-wrap items-center gap-3">
+          <h1 id="ui-title" class="text-2xl font-bold text-gray-900 tracking-tight">Enterprise Demo 打卡異常偵測工具</h1>
+          <span id="ui-privacy-badge" class="bg-green-50 text-green-700 text-xs px-2.5 py-1 rounded-full border border-green-200 font-medium">
+            純前端離線解析・零數據外流風險
+          </span>
+        </div>
+        <p id="ui-subtitle" class="text-sm text-gray-500 mt-1">Enterprise Demo Punch Problem Detector (ED-PPD)</p>
+      </div>
+      <button onclick="toggleLanguage()" id="ui-lang-btn" class="self-start md:self-auto bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold px-3 py-2 rounded-lg border border-gray-300 transition">
+        English
+      </button>
+    </header>
+
+    <!-- 說明與指引 (摺疊面板，包含合規專題區塊) -->
+    <details open class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 group">
+      <summary class="cursor-pointer font-semibold text-gray-800 flex justify-between items-center select-none">
+        <span id="ui-guide-title" class="text-base font-bold text-gray-900 flex items-center gap-2">
+          📖 系統說明與操作指引
+        </span>
+        <span class="text-xs text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+      </summary>
+      <div class="mt-4 pt-4 border-t border-gray-100 text-sm text-gray-600 space-y-5">
+        <p id="ui-guide-intro" class="leading-relaxed"></p>
+
+        <!-- 業務步驟與基準 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-50 p-4 rounded-lg border border-gray-200">
+          <div>
+            <h4 id="ui-guide-step-title" class="font-bold text-gray-800 mb-2"></h4>
+            <ol id="ui-guide-steps" class="list-decimal list-inside space-y-1.5 text-xs text-gray-600 leading-relaxed"></ol>
+          </div>
+          <div>
+            <h4 id="ui-guide-rules-title" class="font-bold text-gray-800 mb-2"></h4>
+            <ul id="ui-guide-rules" class="list-disc list-inside space-y-1.5 text-xs text-gray-600 leading-relaxed"></ul>
+          </div>
+        </div>
+
+        <!-- 🏛️ 法規與 ISO 標準合規區塊 -->
+        <div class="bg-blue-50/50 p-4 rounded-lg border border-blue-100">
+          <h4 id="ui-compliance-title" class="font-bold text-blue-900 text-sm mb-1"></h4>
+          <p id="ui-compliance-intro" class="text-xs text-gray-600 mb-3"></p>
+          <div id="ui-compliance-badges" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3"></div>
+        </div>
+      </div>
+    </details>
+
+    <!-- 檔案上傳區塊 -->
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+      <div id="drop-area" class="border-2 border-dashed border-gray-300 hover:border-blue-400 rounded-xl p-10 text-center cursor-pointer hover:bg-blue-50 transition">
+        <input type="file" id="file-input" accept=".xls,.xlsx" class="hidden">
+        <svg class="mx-auto h-12 w-12 text-gray-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+        </svg>
+        <h3 id="ui-drop-title" class="text-base font-bold text-gray-800"></h3>
+        <p id="ui-drop-subtitle" class="text-xs text-gray-500 mt-1"></p>
+        <p id="ui-drop-notice" class="text-xs text-green-600 font-medium mt-3"></p>
+      </div>
+
+      <!-- 解析結果面板 -->
+      <div id="status-panel" class="mt-8 hidden space-y-4">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 bg-gray-50 p-4 rounded-xl border border-gray-200">
+          <div class="flex items-center gap-2">
+            <span class="inline-block w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></span>
+            <span id="status-text" class="text-sm font-semibold text-gray-800"></span>
+          </div>
+          <button id="download-btn" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-5 py-2.5 rounded-lg shadow-sm transition">
+            下載 Problem.xlsx 報表
+          </button>
+        </div>
+
+        <!-- 快速分類標籤 -->
+        <div class="flex flex-wrap items-center gap-2 pt-2">
+          <button onclick="applyFilter('ALL')" id="tab-all" class="filter-tab active bg-gray-900 text-white text-xs font-semibold px-3.5 py-2 rounded-lg transition shadow-sm">
+            全部異常
+          </button>
+          <button onclick="applyFilter('MISSED')" id="tab-missed" class="filter-tab bg-yellow-50 hover:bg-yellow-100 text-yellow-700 border border-yellow-200 text-xs font-semibold px-3.5 py-2 rounded-lg transition">
+            ⚠️ 漏打卡 (Missed Checkout)
+          </button>
+          <button onclick="applyFilter('ABS')" id="tab-abs" class="filter-tab bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 text-xs font-semibold px-3.5 py-2 rounded-lg transition">
+            🚨 全天缺勤 (ABS)
+          </button>
+          <button onclick="applyFilter('LATE')" id="tab-late" class="filter-tab bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 text-xs font-semibold px-3.5 py-2 rounded-lg transition">
+            遲過 9:00
+          </button>
+          <button onclick="applyFilter('EARLY')" id="tab-early" class="filter-tab bg-purple-50 hover:bg-purple-100 text-purple-700 border border-purple-200 text-xs font-semibold px-3.5 py-2 rounded-lg transition">
+            早過 17:30
+          </button>
+        </div>
+
+        <!-- 即時預覽表格 (全頁大視窗) -->
+        <div class="border border-gray-200 rounded-xl overflow-hidden min-h-[600px] max-h-[85vh] overflow-y-auto shadow-inner bg-white">
+          <table class="w-full text-xs text-left divide-y divide-gray-200">
+            <thead class="bg-gray-50 text-gray-700 font-bold sticky top-0 shadow-sm z-10">
+              <tr>
+                <th id="th-dept" class="px-3.5 py-3">部門代碼</th>
+                <th id="th-dept-name" class="px-3.5 py-3">部門名稱</th>
+                <th id="th-emp" class="px-3.5 py-3">工號</th>
+                <th id="th-name" class="px-3.5 py-3">姓名</th>
+                <th id="th-date" class="px-3.5 py-3">日期</th>
+                <th id="th-day" class="px-3.5 py-3">星期</th>
+                <th id="th-clk" class="px-3.5 py-3">原始打卡 (Clk1-4)</th>
+                <th id="th-in" class="px-3.5 py-3">Time IN</th>
+                <th id="th-out" class="px-3.5 py-3">Time OUT</th>
+                <th id="th-reason" class="px-3.5 py-3">異常原因 (Reason)</th>
+              </tr>
+            </thead>
+            <tbody id="preview-body" class="divide-y divide-gray-100 bg-white"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 企業合規與法規指引頁尾 -->
+  <footer class="mt-12 py-6 border-t border-gray-200 text-center text-xs text-gray-500 space-y-2">
+    <div class="flex flex-wrap justify-center items-center gap-4">
+      <span>© 2026 Enterprise Demo Limited</span>
+      <span class="text-gray-300">|</span>
+      <a href="https://github.com/jackylawck/EnterpriseDemo-PunchProblemDetector/blob/main/COMPLIANCE.md" target="_blank" class="text-blue-600 hover:text-blue-800 underline font-medium">
+        合規架構白皮書 (Compliance Whitepaper)
+      </a>
+      <span class="text-gray-300">|</span>
+      <a href="https://github.com/jackylawck/EnterpriseDemo-PunchProblemDetector/blob/main/TERMS.md" target="_blank" class="text-blue-600 hover:text-blue-800 underline font-medium">
+        法律條款與審計免責 (Terms & Disclaimer)
+      </a>
+    </div>
+    <p class="text-[11px] text-gray-400">
+      System Architect: 羅子淇 (Jacky Law, F.I.H.R.M., FHKIoD) • Client-Side Deterministic Governance Engine
+    </p>
+  </footer>
+</body>
+</html>
