@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jackylawck.github.io/EnterpriseDemo-PunchProblemDetector/schemas/attendance_audit_schema.json",
+  "title": "Enterprise Demo Attendance Audit Data Contract (ED-PPD)",
+  "description": "企業打卡異常偵測工具 (ED-PPD) 之標準輸入考勤結構、確定性業務審計閾值、豁免代碼枚舉及輸出報表 (Problem.Log) 數據合約規範。",
+  "version": "1.0.0",
+  "metadata": {
+    "architect": "羅子淇 (Jacky Law)",
+    "architecturePattern": "Client-Side Deterministic Rule Engine (Zero-Data Retention)",
+    "complianceAlignment": [
+      "Hong Kong Cap. 486 (PDPO)",
+      "ISO/IEC 27001",
+      "ISO/IEC 27701"
+    ]
+  },
+  "type": "object",
+  "required": ["auditConfiguration", "rawAttendanceInput", "anomalyOutputRecord"],
+  "properties": {
+    "auditConfiguration": {
+      "$ref": "#/$defs/AuditConfiguration"
+    },
+    "rawAttendanceInput": {
+      "$ref": "#/$defs/RawAttendanceInput"
+    },
+    "anomalyOutputRecord": {
+      "$ref": "#/$defs/AnomalyOutputRecord"
+    }
+  },
+  "$defs": {
+    "AuditConfiguration": {
+      "type": "object",
+      "description": "系統內建之確定性考勤審計基準參數（Deterministic Audit Benchmarks）",
+      "properties": {
+        "cutoffDayOfMonth": {
+          "type": "integer",
+          "const": 25,
+          "description": "月度考勤截數日（每月 25 號後之記錄自動過濾不計入當期審計）"
+        },
+        "lateCheckInThreshold": {
+          "type": "number",
+          "const": 9.0,
+          "description": "上班遲到判定閾值（24小時制小數格式，9.00 代表 09:00 AM）"
+        },
+        "earlyLeaveThreshold": {
+          "type": "number",
+          "const": 17.3,
+          "description": "下班早退判定閾值（24小時制小數格式，17.30 代表 05:30 PM）"
+        },
+        "afternoonPunchBoundary": {
+          "type": "number",
+          "const": 13.0,
+          "description": "漏打收工卡之下午時段分界線（13.00 代表 01:00 PM）"
+        },
+        "minStandardWorkHours": {
+          "type": "number",
+          "const": 7.0,
+          "description": "觸發早退檢查之最低標準班次工時（排除半日假或特殊短班）"
+        },
+        "targetDepartments": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": ["PCD", "HOF", "PMD", "POD", "QSD", "WMD", "ADD", "CPD", "SED"],
+          "description": "納入自動化審計範圍之目標業務部門代碼"
+        },
+        "nonWorkingDayCodes": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": ["REST", "RES", "PH"],
+          "description": "休息日與法定公眾假期代碼（無條件排除審計）"
+        },
+        "approvedDutyExemptions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": ["SITE", "MEET", "TRAIN", "EVENT", "OTHER", "LEAVE", "TRIP", "OFF"],
+          "description": "經審批之正當外勤、培訓與休假豁免代碼清單"
+        }
+      }
+    },
+    "RawAttendanceInput": {
+      "type": "object",
+      "description": "原廠考勤系統導出 Excel 工作表之單行欄位映射結構（Column Index 0 - 23）",
+      "required": ["dept", "empCode", "name", "date", "day"],
+      "properties": {
+        "dept": { "type": "string", "description": "Col[0]: Department Code（部門代碼）" },
+        "deptName": { "type": "string", "description": "Col[1]: Department Name（部門名稱）" },
+        "empCode": { "type": "string", "pattern": "^E.*", "description": "Col[2]: Employee Code（僅審計 E 字頭職員）" },
+        "name": { "type": "string", "description": "Col[3]: Employee Full Name（員工姓名，僅存於本機記憶體）" },
+        "desig": { "type": "string", "description": "Col[4]: Designation（職位名稱）" },
+        "date": { "type": "string", "description": "Col[5]: Attendance Date（考勤日期）" },
+        "day": {
+          "type": "string",
+          "enum": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "description": "Col[6]: Day of Week（星期）"
+        },
+        "clk1": { "type": "number", "minimum": 0, "description": "Col[7]: Actual Clocking 1（首度打卡時間）" },
+        "clk2": { "type": "number", "minimum": 0, "description": "Col[8]: Actual Clocking 2（第二次打卡時間）" },
+        "clk3": { "type": "number", "minimum": 0, "description": "Col[9]: Actual Clocking 3（第三次打卡時間）" },
+        "clk4": { "type": "number", "minimum": 0, "description": "Col[10]: Actual Clocking 4（第四次打卡時間）" },
+        "timeIn": { "type": "number", "minimum": 0, "description": "Col[11]: System Recognized Time IN" },
+        "timeOut": { "type": "number", "minimum": 0, "description": "Col[12]: System Recognized Time OUT（行政補簽聯動欄位）" },
+        "shift": { "type": "string", "description": "Col[13]: Shift Code（班次代碼）" },
+        "normal": { "type": "number", "minimum": 0, "description": "Col[14]: Normal Scheduled Hours（標準排班工時）" },
+        "reasonRaw": { "type": "string", "description": "Col[23]: System Remark / Exemption Code（系統備註或外勤代碼）" }
+      }
+    },
+    "AnomalyOutputRecord": {
+      "type": "object",
+      "description": "系統篩選後輸出至預覽介面及 Problem.xlsx (Problem.Log) 之標準化異常記錄結構",
+      "required": ["dept", "empCode", "date", "reason", "category", "priority"],
+      "properties": {
+        "dept": { "type": "string" },
+        "deptName": { "type": "string" },
+        "empCode": { "type": "string" },
+        "name": { "type": "string" },
+        "desig": { "type": "string" },
+        "date": { "type": "string" },
+        "day": { "type": "string" },
+        "clk1": { "type": "number" },
+        "clk2": { "type": "number" },
+        "clk3": { "type": "number" },
+        "clk4": { "type": "number" },
+        "timeIn": { "type": "number" },
+        "timeOut": { "type": "number" },
+        "reason": {
+          "type": "string",
+          "description": "可讀性異常診斷說明（含具體違規時間點數值）"
+        },
+        "category": {
+          "type": "string",
+          "enum": ["MISSED", "ABS", "LATE", "EARLY"],
+          "description": "異常分類代碼：MISSED=漏打收工卡, ABS=全天缺勤, LATE=遲到, EARLY=早退"
+        },
+        "priority": {
+          "type": "integer",
+          "enum": [1, 2, 3, 4],
+          "description": "報表排序優先級（1 為最高置頂優先級）"
+        }
+      }
+    }
+  }
+}
