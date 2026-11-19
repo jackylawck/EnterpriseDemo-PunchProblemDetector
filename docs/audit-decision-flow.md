@@ -48,3 +48,35 @@ flowchart TD
     CheckP4 -- "否 (No)" --> Pass(["合規通過：無考勤異常"])
     
     TagMissed & TagAbs & TagLate & TagEarly --> Export["依優先級排序並生成 Problem.xlsx"]
+
+3. 審計規則與防誤報設計解析 (Audit Rules & False-Positive Prevention)
+| 優先級 (Priority) | 異常代碼 (Category) | 數學判定條件 (Deterministic Condition) | 防誤報與企業治理設計 (Governance Rationale) |
+|---|---|---|---|
+| 1 (置頂) | MISSED | (\text{Clk}_1 > 0 \lor \text{Time IN} > 0) \land \text{Time OUT} = 0 \land \text{Last\_Clk} < 13.00 \land \neg \text{ApprovedDuty} | Time OUT 聯動機制：若人事部已於系統補錄合法收工時間（\text{Time OUT} > 0），即使實體打卡槽位缺失亦自動豁免，杜絕行政補簽後的重複誤報。 |
+| 2 (置頂) | ABS | \text{PunchCount} = 0 \land \text{Reason} = \text{'ABS'} | 嚴格區分「完全無打卡之缺勤」與「有打卡但系統誤標 ABS」，確保 HR 優先處理真實曠工或漏交假紙個案。 |
+| 3 | LATE | \text{Clk}_1 > 9.00 \land \text{Reason} = \emptyset \land \neg \text{ApprovedDuty} | 凡已標註外勤（SITE）、會議（MEET）、培訓（TRAIN）或請假代碼者無條件放行。 |
+| 4 | EARLY | \text{Day} \neq \text{'Saturday'} \land \text{Normal} \ge 7.0 \land 0 < \max(\text{Last\_Clk}, \text{Time OUT}) < 17.30 \land \text{Reason} = \emptyset \land \neg \text{ApprovedDuty} | 自動排除週六短班及標準工時少於 7 小時之特殊排班，並同時比對實體最後打卡與系統核准收工時間，取其較晚者為準。 |
+4. 治理與可審計性聲明 (Audit Traceability Note)
+本決策樹完全基於確定性布林邏輯（Deterministic Boolean Logic），不涉及任何機率模型、機器學習權重或生成式推論。在任何時間點輸入相同的原始考勤 Excel 檔案，系統均會產出 100% 一致且可完全回溯的審計結果，符合企業內部控制與人力資源合規審查之最高透明度要求。
+
+---
+
+### 建議同步更新 `README.md` 檔案結構樹
+
+建立好這兩個檔案後，您可以順手在 `README.md` 的「專案檔案結構」區塊補上它們，讓整個倉庫的結構呈現更加完整：
+
+```text
+ED-PPD/
+├── docs/
+│   └── audit-decision-flow.md        # 確定性審計決策樹與架構流程圖 (Mermaid)
+├── schemas/
+│   └── attendance_audit_schema.json  # 標準輸入/輸出數據合約與審計閾值規範
+├── index.html                        # 結構骨架、SEO 宣傳標籤與視窗容器
+├── app.js                            # 核心業務審計引擎、SheetJS 解析與 Excel 導出
+├── i18n.js                           # 國際化雙語模組 (繁體中文 / 英文切換)
+├── COMPLIANCE.md                     # 企業級法規適用性判定與科技治理白皮書
+├── TERMS.md                          # 法律使用條款、知識產權防護與審計免責聲明
+├── LICENSE                           # MIT 開源授權協議條款
+├── .gitignore                        # 嚴格禁止任何考勤原檔 (*.xls, *.xlsx) 提交至雲端
+└── README.md                         # 專案說明文檔
+
