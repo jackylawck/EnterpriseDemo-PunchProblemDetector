@@ -125,6 +125,10 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang HK", "Microsoft JhengHei", sans-serif;
     }
 
+    /* 嚴格單語切換控制規則 */
+    body:not(.lang-en) .en { display: none !important; }
+    body.lang-en .tc { display: none !important; }
+
     .glass-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -160,7 +164,7 @@
 
     <!-- 頂部語系切換列 -->
     <div class="flex justify-end">
-      <button onclick="toggleLanguage()" id="ui-lang-btn" class="bg-blue-600/20 hover:bg-blue-600/40 text-blue-300 hover:text-white text-xs font-semibold px-4 py-1.5 rounded-full border border-blue-400/40 transition">
+      <button onclick="switchAllLanguage()" id="ui-lang-btn" class="bg-blue-600/20 hover:bg-blue-600/40 text-blue-300 hover:text-white text-xs font-semibold px-4 py-1.5 rounded-full border border-blue-400/40 transition">
         English
       </button>
     </div>
@@ -168,7 +172,8 @@
     <!-- 企業管治門面 Hero Header -->
     <header class="text-center space-y-3 pb-2">
       <div class="inline-block bg-blue-500/15 text-blue-300 border border-blue-400/30 px-3.5 py-1 rounded-full text-xs font-semibold tracking-wider uppercase">
-        Enterprise Governance Digital Transformation • Open-Source Demo
+        <span class="tc">企業管治數位轉型・開源示範專案</span>
+        <span class="en">Enterprise Governance Digital Transformation • Open-Source Demo</span>
       </div>
       <div class="flex flex-wrap justify-center items-center gap-3">
         <h1 id="ui-title" class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">Enterprise Demo 打卡異常偵測工具</h1>
@@ -185,59 +190,121 @@
       </div>
 
       <div class="glass-card border-l-4 border-l-blue-500 rounded-md p-4 max-w-4xl mx-auto text-left text-sm text-gray-300 mt-4">
-        <strong class="text-blue-300">「零數據留存、確定性規則防誤報之純前端考勤完整性審計工作站」</strong><br>
-        所有 Excel 解析、業務規則篩檢與報表重組皆於本機瀏覽器 RAM 沙盒內完成，無任何後端 API 傳輸，全面貫徹 Privacy by Design 治理標準。
+        <div class="tc">
+          <strong class="text-blue-300">「零數據留存、確定性規則防誤報之純前端考勤完整性審計工作站」</strong><br>
+          所有 Excel 解析、業務規則篩檢與報表重組皆於本機瀏覽器 RAM 沙盒內完成，無任何後端 API 傳輸，全面貫徹 Privacy by Design 治理標準。
+        </div>
+        <div class="en">
+          <strong class="text-blue-300">"Zero-Data Retention, Deterministic Client-Side Attendance Integrity Audit Workstation"</strong><br>
+          All Excel parsing, rule evaluation, and workbook reconstruction execute strictly within local browser RAM sandboxes with zero backend transmission, adhering to Privacy by Design governance standards.
+        </div>
       </div>
     </header>
 
     <!-- 🏛️ 審計生命週期流程圖卡 -->
     <section class="glass-card rounded-xl p-6">
       <h2 class="text-lg font-bold text-white border-b border-white/10 pb-3 mb-4">
-        🏛️ 端到端純前端確定性審計生命週期 (Audit Pipeline)
+        <span class="tc">🏛️ 端到端純前端確定性審計生命週期</span>
+        <span class="en">🏛️ End-to-End Client-Side Deterministic Audit Pipeline</span>
       </h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
         <div class="flow-node rounded-lg p-3.5">
-          <div class="text-[11px] font-bold text-blue-400 uppercase mb-1">Step 01 • Ingestion</div>
-          <div class="text-sm font-semibold text-white mb-1">本地記憶體讀取</div>
-          <p class="text-xs text-gray-400">SheetJS 直接於瀏覽器 RAM 解析 .xls/.xlsx，自動鎖定每月 25 號截數日。</p>
+          <div class="text-[11px] font-bold text-blue-400 uppercase mb-1">
+            <span class="tc">步驟 01 • 本地讀取</span>
+            <span class="en">Step 01 • Ingestion</span>
+          </div>
+          <div class="text-sm font-semibold text-white mb-1">
+            <span class="tc">記憶體沙盒解析</span>
+            <span class="en">In-Memory RAM Parsing</span>
+          </div>
+          <p class="text-xs text-gray-400">
+            <span class="tc">SheetJS 直接於瀏覽器 RAM 解析 .xls/.xlsx，自動鎖定每月 25 號截數日。</span>
+            <span class="en">SheetJS parses .xls/.xlsx directly in browser RAM and dynamically locks the 25th cutoff date.</span>
+          </p>
         </div>
         <div class="flow-node rounded-lg p-3.5">
-          <div class="text-[11px] font-bold text-blue-400 uppercase mb-1">Step 02 • Scope Guard</div>
-          <div class="text-sm font-semibold text-white mb-1">範圍與休假過濾</div>
-          <p class="text-xs text-gray-400">僅審計目標部門 E 字頭職員，無條件排除 REST、RES 及 PH 公眾假期。</p>
+          <div class="text-[11px] font-bold text-blue-400 uppercase mb-1">
+            <span class="tc">步驟 02 • 範圍過濾</span>
+            <span class="en">Step 02 • Scope Guard</span>
+          </div>
+          <div class="text-sm font-semibold text-white mb-1">
+            <span class="tc">目標部門與假期排除</span>
+            <span class="en">Scope & Holiday Filtering</span>
+          </div>
+          <p class="text-xs text-gray-400">
+            <span class="tc">僅審計目標部門 E 字頭職員，無條件排除 REST、RES 及 PH 公眾假期。</span>
+            <span class="en">Scopes audit to E-prefixed staff in target departments and excludes REST, RES, and PH days.</span>
+          </p>
         </div>
         <div class="flow-node rounded-lg p-3.5">
-          <div class="text-[11px] font-bold text-blue-400 uppercase mb-1">Step 03 • Exemption</div>
-          <div class="text-sm font-semibold text-white mb-1">外勤與補簽豁免</div>
-          <p class="text-xs text-gray-400">放行 SITE/MEET/TRAIN 外勤，並聯動 Time OUT 杜絕行政補簽後誤報。</p>
+          <div class="text-[11px] font-bold text-blue-400 uppercase mb-1">
+            <span class="tc">步驟 03 • 豁免聯動</span>
+            <span class="en">Step 03 • Exemption</span>
+          </div>
+          <div class="text-sm font-semibold text-white mb-1">
+            <span class="tc">外勤與補簽防誤報</span>
+            <span class="en">Duty & Adjustment Immunity</span>
+          </div>
+          <p class="text-xs text-gray-400">
+            <span class="tc">放行 SITE/MEET/TRAIN 外勤，並聯動 Time OUT 杜絕行政補簽後誤報。</span>
+            <span class="en">Exempts SITE/MEET/TRAIN duties and cross-checks Time OUT to prevent false alarms.</span>
+          </p>
         </div>
         <div class="flow-node rounded-lg p-3.5">
-          <div class="text-[11px] font-bold text-blue-400 uppercase mb-1">Step 04 • Decision Tree</div>
-          <div class="text-sm font-semibold text-white mb-1">四層確定性定級</div>
-          <p class="text-xs text-gray-400">依序判定漏打卡 (P1)、缺勤 (P2)、遲到 (P3) 與早退 (P4)，結果 100% 可回溯。</p>
+          <div class="text-[11px] font-bold text-blue-400 uppercase mb-1">
+            <span class="tc">步驟 04 • 規則引擎</span>
+            <span class="en">Step 04 • Decision Tree</span>
+          </div>
+          <div class="text-sm font-semibold text-white mb-1">
+            <span class="tc">四層確定性定級</span>
+            <span class="en">4-Tier Deterministic Grading</span>
+          </div>
+          <p class="text-xs text-gray-400">
+            <span class="tc">依序判定漏打卡 (P1)、缺勤 (P2)、遲到 (P3) 與早退 (P4)，結果 100% 可回溯。</span>
+            <span class="en">Evaluates Missed Checkout (P1), ABS (P2), Late (P3), and Early Leave (P4) with 100% traceability.</span>
+          </p>
         </div>
         <div class="flow-node active rounded-lg p-3.5">
-          <div class="text-[11px] font-bold text-green-400 uppercase mb-1">Step 05 • Closure</div>
-          <div class="text-sm font-semibold text-white mb-1">標準化報表導出</div>
-          <p class="text-xs text-gray-300">漏打卡與缺勤自動置頂高亮，一鍵導出對齊原廠規格之 Problem.xlsx。</p>
+          <div class="text-[11px] font-bold text-green-400 uppercase mb-1">
+            <span class="tc">步驟 05 • 報表輸出</span>
+            <span class="en">Step 05 • Closure</span>
+          </div>
+          <div class="text-sm font-semibold text-white mb-1">
+            <span class="tc">標準化 Excel 導出</span>
+            <span class="en">Standardized Workbook Export</span>
+          </div>
+          <p class="text-xs text-gray-300">
+            <span class="tc">漏打卡與缺勤自動置頂高亮，一鍵導出對齊原廠規格之 Problem.xlsx。</span>
+            <span class="en">Pins critical anomalies to the top and exports a standardized Problem.xlsx workbook.</span>
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- ⚡ 核心互動工作站 (保留白底高對比以完美相容 app.js 與 i18n.js) -->
+    <!-- ⚡ 核心互動工作站 (白底高對比完美相容 app.js 與 i18n.js) -->
     <section class="bg-white text-gray-800 rounded-xl shadow-xl border border-gray-200 p-6 md:p-8 space-y-6">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-100 pb-4">
         <div>
-          <h2 class="text-lg font-bold text-gray-900">⚡ 即時考勤審計工作站 (Live Audit Workstation)</h2>
-          <p class="text-xs text-gray-500 mt-0.5">上傳您的考勤報表，或點擊右側按鈕一鍵載入內建虛擬測試數據體驗引擎邏輯。</p>
+          <h2 class="text-lg font-bold text-gray-900">
+            <span class="tc">⚡ 即時考勤審計工作站</span>
+            <span class="en">⚡ Live Attendance Audit Workstation</span>
+          </h2>
+          <p class="text-xs text-gray-500 mt-0.5">
+            <span class="tc">上傳您的考勤報表，或點擊右側按鈕一鍵載入內建虛擬測試數據體驗引擎邏輯。</span>
+            <span class="en">Upload your attendance spreadsheet, or click the buttons on the right to test with built-in synthetic data.</span>
+          </p>
         </div>
         <!-- 互動示範按鈕組 -->
         <div class="flex flex-wrap items-center gap-2">
           <button type="button" onclick="runMockDemo()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold px-4 py-2.5 rounded-lg shadow-sm transition flex items-center gap-1.5">
-            <span>🚀</span> 一鍵載入虛擬數據體驗 (Load Mock Demo)
+            <span>🚀</span>
+            <span class="tc">一鍵載入虛擬數據體驗</span>
+            <span class="en">Load Synthetic Demo Data</span>
           </button>
           <button type="button" onclick="downloadMockTemplate()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-300 transition">
-            📥 下載虛擬測試檔 (.xlsx)
+            <span>📥</span>
+            <span class="tc">下載虛擬測試檔 (.xlsx)</span>
+            <span class="en">Download Sample (.xlsx)</span>
           </button>
         </div>
       </div>
@@ -339,37 +406,58 @@
 
     <!-- 📂 Governance-as-Code 治理文件導覽列 -->
     <section class="glass-card rounded-xl p-6">
-      <h2 class="text-base font-bold text-white mb-3">📂 治理即代碼架構文件 (Governance-as-Code Artifacts)</h2>
+      <h2 class="text-base font-bold text-white mb-3">
+        <span class="tc">📂 治理即代碼架構文件</span>
+        <span class="en">📂 Governance-as-Code Artifacts</span>
+      </h2>
       <div class="flex flex-wrap gap-2.5">
         <a class="artifact-link px-3 py-1.5 rounded-md text-xs font-semibold" href="https://github.com/jackylawck/EnterpriseDemo-PunchProblemDetector/blob/main/docs/audit-decision-flow.md" target="_blank" rel="noopener">
-          確定性審計決策樹 (Mermaid)
+          <span class="tc">確定性審計決策樹 (Mermaid)</span>
+          <span class="en">Deterministic Audit Decision Tree (Mermaid)</span>
         </a>
         <a class="artifact-link px-3 py-1.5 rounded-md text-xs font-semibold" href="https://github.com/jackylawck/EnterpriseDemo-PunchProblemDetector/blob/main/schemas/attendance_audit_schema.json" target="_blank" rel="noopener">
-          數據合約與閾值規範 (JSON Schema)
+          <span class="tc">數據合約與閾值規範 (JSON Schema)</span>
+          <span class="en">Data Contract & Thresholds (JSON Schema)</span>
         </a>
         <a class="artifact-link px-3 py-1.5 rounded-md text-xs font-semibold" href="https://github.com/jackylawck/EnterpriseDemo-PunchProblemDetector/blob/main/COMPLIANCE.md" target="_blank" rel="noopener">
-          合規架構白皮書 (COMPLIANCE.md)
+          <span class="tc">合規架構白皮書</span>
+          <span class="en">Compliance Whitepaper</span>
         </a>
         <a class="artifact-link px-3 py-1.5 rounded-md text-xs font-semibold" href="https://github.com/jackylawck/EnterpriseDemo-PunchProblemDetector/blob/main/TERMS.md" target="_blank" rel="noopener">
-          法律條款與審計免責 (TERMS.md)
+          <span class="tc">法律條款與審計免責</span>
+          <span class="en">Terms & Audit Disclaimer</span>
         </a>
         <a class="artifact-link px-3 py-1.5 rounded-md text-xs font-semibold" href="https://github.com/jackylawck/EnterpriseDemo-PunchProblemDetector" target="_blank" rel="noopener">
-          GitHub 源代碼庫 (Repository)
+          <span class="tc">GitHub 源代碼庫</span>
+          <span class="en">GitHub Repository</span>
         </a>
       </div>
     </section>
 
     <!-- 頁尾與免責聲明 -->
     <footer class="pt-6 pb-4 border-t border-white/10 text-center text-xs text-gray-400 space-y-3">
-      <p>© 2026 Enterprise Demo Framework. Released under the MIT License.</p>
+      <p>
+        <span class="tc">© 2026 Enterprise Demo Framework. 採 MIT License 授權發佈。</span>
+        <span class="en">© 2026 Enterprise Demo Framework. Released under the MIT License.</span>
+      </p>
       <p class="text-amber-300/90 text-[11px] max-w-3xl mx-auto bg-amber-500/10 border border-amber-500/20 rounded-md px-3 py-2">
-        <strong>免責聲明 (Disclaimer)：</strong>本專案為企業管治與純前端架構研究而設之通用示範（Enterprise Demo），內建測試數據均為完全虛擬生成，且所有上傳檔案均僅於使用者本機記憶體處理，絕不傳輸至外部伺服器。
+        <span class="tc"><strong>免責聲明：</strong>本專案為企業管治與純前端架構研究而設之通用示範（Enterprise Demo），內建測試數據均為完全虛擬生成，且所有上傳檔案均僅於使用者本機記憶體處理，絕不傳輸至外部伺服器。</span>
+        <span class="en"><strong>Disclaimer:</strong> This project is a generic enterprise demo created for architectural and governance research. Built-in sample datasets are purely synthetic, and all uploaded files are processed strictly within local browser memory without external transmission.</span>
       </p>
     </footer>
   </div>
 
-  <!-- 🚀 虛擬數據互動示範生成器 (直接調用 app.js 之 processAttendance 引擎) -->
+  <!-- 🚀 雙語聯動與虛擬數據互動示範生成器 -->
   <script>
+    function switchAllLanguage() {
+      if (typeof toggleLanguage === "function") {
+        toggleLanguage();
+      }
+      const isEn = (typeof currentLang !== "undefined" && currentLang === "en");
+      document.body.classList.toggle("lang-en", isEn);
+      document.documentElement.lang = isEn ? "en" : "zh-HK";
+    }
+
     function buildMockWorkbook() {
       const aoa = [
         ["Enterprise Demo Attendance Report"],
